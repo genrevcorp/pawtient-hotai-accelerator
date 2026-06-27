@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>2026 和泰加速器報名表 — 草稿審閱 · Pawtient AI</title>
+<style>
+:root{
+  --paper:#FAF7F3; --surface:#FFFFFF; --surface-2:#F3EEE8;
+  --ink:#231C20; --soft:#6E5F66; --faint:#9C8C93;
+  --rose:#A8517D; --rose-deep:#8C3E66; --rose-wash:#F7EAF1; --rose-line:#E8D2DE;
+  --green:#2F7D6E; --green-wash:#E6F2EE;
+  --amber:#9A6B00; --amber-wash:#FBF1D8; --amber-line:#EAD9A8;
+  --line:#E7DDE0;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.75;font-size:15.5px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(180deg,#fff,var(--surface-2));border-bottom:1px solid var(--line);padding:34px 0 28px}
+header h1{font-size:25px;font-weight:900;letter-spacing:.01em}
+header h1 em{font-style:normal;color:var(--rose-deep)}
+header .sub{color:var(--soft);margin-top:8px;font-size:14.5px}
+header .meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px 13px;color:var(--soft)}
+.pill b{color:var(--ink);font-weight:700}
+.pill a{color:var(--rose-deep);text-decoration:none}
+section.intro{padding:22px 0 4px}
+.note{background:var(--amber-wash);border:1px solid var(--amber-line);border-radius:var(--radius);padding:18px 20px;margin:18px 0}
+.note h2{font-size:15px;color:var(--amber);margin-bottom:10px;letter-spacing:.02em}
+.note ol{margin:0 0 0 20px;font-size:14px;color:#5b4a2e}
+.note ol li{margin:5px 0}
+.note .q{font-weight:700;color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--faint);padding:8px 0 22px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.dot.ok{background:var(--green)} .dot.todo{background:var(--amber)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;margin:14px 0;box-shadow:0 1px 2px rgba(60,30,45,.03),0 10px 30px -22px rgba(60,30,45,.25)}
+.card.todo{border-left:4px solid var(--amber)}
+.card.ok{border-left:4px solid var(--green)}
+.card .qhead{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.qno{font-weight:900;color:var(--rose);font-size:13px;background:var(--rose-wash);border-radius:7px;
+  padding:3px 8px;white-space:nowrap;margin-top:2px}
+.qlabel{font-weight:700;font-size:15px;line-height:1.5}
+.qlabel .en{display:block;font-weight:500;color:var(--faint);font-size:12.5px;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0}
+.tag{font-size:11px;border-radius:99px;padding:2px 9px;font-weight:700;letter-spacing:.04em}
+.tag.req{background:#fdeaf1;color:var(--rose-deep)}
+.tag.opt{background:#eef1ef;color:var(--soft)}
+.tag.type{background:#eef0f5;color:#566}
+.ans{position:relative;background:#FBFAF8;border:1px solid var(--line);border-radius:10px;
+  padding:14px 44px 14px 15px;white-space:pre-wrap;font-size:14.5px;line-height:1.8}
+.ans.choice{white-space:normal}
+.copy{position:absolute;top:9px;right:9px;border:1px solid var(--line);background:#fff;border-radius:7px;
+  font-size:11.5px;padding:4px 9px;cursor:pointer;color:var(--soft);transition:.15s}
+.copy:hover{background:var(--rose-wash);color:var(--rose-deep);border-color:var(--rose-line)}
+.copy.done{background:var(--green-wash);color:var(--green);border-color:#bfe0d6}
+.opt-row{display:flex;align-items:flex-start;gap:9px;padding:5px 0;font-size:14px;border-bottom:1px dashed var(--line)}
+.opt-row:last-child{border-bottom:none}
+.opt-row.pick{font-weight:700}
+.mark{font-size:15px;line-height:1.4;flex:0 0 auto;margin-top:1px}
+.mark.on{color:var(--green)} .mark.off{color:var(--faint)}
+.flag{display:inline-block;background:var(--amber-wash);color:var(--amber);border:1px solid var(--amber-line);
+  border-radius:6px;font-size:11.5px;font-weight:700;padding:1px 7px;margin-right:6px}
+.hint{font-size:12.5px;color:var(--soft);margin-top:9px;background:#f6f4f1;border-radius:8px;padding:9px 12px}
+.hint b{color:var(--ink)}
+details.deck{margin-top:11px}
+details.deck summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--rose-deep)}
+details.deck ol{margin:10px 0 0 20px;font-size:13.5px;color:var(--soft)}
+details.deck ol li{margin:6px 0}
+details.deck b{color:var(--ink)}
+footer{padding:30px 0 60px;color:var(--faint);font-size:12.5px;text-align:center}
+.guard{font-size:12px;color:var(--faint);max-width:60ch;margin:0 auto;line-height:1.7}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>2026 <em>和泰加速器</em>第二期報名表 · 草稿審閱</h1>
+    <div class="sub">為 Pawtient AI（通用創新有限公司）填寫的中文草稿。請在另一台電腦審閱、補齊標示項目後，再回到 Google 表單貼上送出。</div>
+    <div class="meta">
+      <span class="pill">表單帳號：<b>magnetic.lin@gmail.com</b></span>
+      <span class="pill"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfuQXLhH8iXhLBny40Rpzr63qU6eQlhRpJ5D0oK1VIngu6SzQ/viewform" target="_blank">開啟原始 Google 表單 ↗</a></span>
+      <span class="pill">申請截止：<b>2026/06/30</b></span>
+      <span class="pill">主軸：<b>主題3 · 創新產險銷售方案</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="intro">
+  <div class="note">
+    <h2>⚠️ 送出前，這幾題需要您補充或確認（其餘已備妥草稿）</h2>
+    <ol>
+      <li><span class="q">Q3 Email</span> — 請換成保險提案 deck 使用的信箱（目前暫放 magnetic.lin@gmail.com）。</li>
+      <li><span class="q">Q4 聯絡人電話</span>、<span class="q">Q7 公司創辦／設立日期</span>、<span class="q">Q11 所在城市</span>、<span class="q">Q12 全職人數</span> — 請填入正確資料。</li>
+      <li><span class="q">Q23 提案簡報下載連結（必填）</span> — 需提供一個可下載的簡報連結（Google Drive／雲端）。下方已附「8 段式建議內容」供您快速做出簡報；若需要，我也可幫您做一份和泰專屬簡報並上線。</li>
+      <li><span class="q">Q24–28 募資相關金額</span> — 草稿先假設「尚未進行股權募資、目前為自籌＋政府 SBIR 補助」。若有出入請改；金額請填您實際數字。</li>
+      <li><span class="q">Q31 如何得知計劃</span>、<span class="q">Q33 是否看過廣告</span> — 單／複選，請依實際情況勾選。</li>
+      <li><span class="q">Q9 公司官網</span>、<span class="q">Q5 公司登記名稱</span> — 已代填，請最後確認無誤。</li>
+      <li><span class="q">最後一題 同意條款</span> — 請於送出前自行勾選（屬法律同意，需由您本人確認）。</li>
+    </ol>
+  </div>
+  <div class="legend">
+    <span><i class="dot ok"></i> 已備妥草稿，可直接複製</span>
+    <span><i class="dot todo"></i> 需您補充／確認</span>
+    <span>每格右上角「複製」可一鍵複製貼到表單</span>
+  </div>
+</section>
+
+<!-- Q1 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q1</span><div><div class="qlabel">聯絡人姓名<span class="en">What is your full name?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="林緯軒 (Sean Lin)">林緯軒 (Sean Lin)<button class="copy">複製</button></div>
+  <div class="hint">負責人即創辦人本人。若您希望以業務窗口具名，可改為 <b>Kono</b>。</div>
+</div>
+
+<!-- Q2 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q2</span><div><div class="qlabel">聯絡人職稱<span class="en">What is your current role on your team?</span></div><div class="tags"><span class="tag opt">選填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="創辦人暨執行長 (Founder & CEO)">創辦人暨執行長 (Founder &amp; CEO)<button class="copy">複製</button></div>
+</div>
+
+<!-- Q3 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q3</span><div><div class="qlabel">Email<span class="en">Email</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="magnetic.lin@gmail.com"><span class="flag">請改</span>magnetic.lin@gmail.com<button class="copy">複製</button></div>
+  <div class="hint">請改成保險提案 deck 使用的信箱（待提供）。目前先放表單登入帳號 magnetic.lin@gmail.com 作為暫填。</div>
+</div>
+
+<!-- Q4 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q4</span><div><div class="qlabel">聯絡人電話<span class="en">Phone Number</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="0979 450 928"><span class="flag">請確認</span>0979 450 928<button class="copy">複製</button></div>
+  <div class="hint">此為提案文件上的業務窗口（Kono）電話。若要用您本人手機，請改填。</div>
+</div>
+
+<!-- Q5 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q5</span><div><div class="qlabel">公司登記名稱<span class="en">Company's Legal Name</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="通用創新有限公司 (General Innovation Co., Ltd.)">通用創新有限公司 (General Innovation Co., Ltd.)<button class="copy">複製</button></div>
+  <div class="hint">依 SBIR 計畫書登記名稱。<span class="flag">請確認</span>與公司設立登記文件一致。</div>
+</div>
+
+<!-- Q7 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q7</span><div><div class="qlabel">創辦日期<span class="en">When was your company launched?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">日期</span></div></div></div>
+  <div class="ans choice"><span class="flag">請填寫</span>公司設立／登記日期（年／月／日）。我的資料中沒有確切日期，請依公司登記證明填入。</div>
+  <div class="hint">表單為日期選擇器。若想以「產品上線」計：iOS 上架為 <b>2025/12/09</b>；但本題問的是公司成立，請以登記日期為準。</div>
+</div>
+
+<!-- Q8 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q8</span><div><div class="qlabel">公司簡介<span class="en">Company Intro — 核心技術、欲解決的痛點、產品/解決方案</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">長答</span></div></div></div>
+  <div class="ans" data-copy="Pawtient AI 是一套以 AI 驅動的寵物健康照護系統，專為需要長期追蹤的慢性病寵物（例如罹患慢性腎臟病的高齡貓）打造。
+
+【痛點】寵物的醫療資料高度分散——血檢報告、診療紀錄、用藥與症狀散落在不同診所與紙本之間。飼主難以整理，獸醫師回診時缺乏完整病史，保險公司核保／理賠時更得耗費大量人力逐筆比對、判斷既往症與發病時點。慢性病寵物的病程橫跨數年、數十份檢驗單，問題尤其嚴重。
+
+【核心技術】
+• 血檢報告 AI 辨識：拍一張檢驗單，自動抓取每項參數、數值、單位與參考區間，支援 64 種血檢項目，辨識準確率達 95.2%，並以色碼標示異常、多次並排對照。
+• 看診語音轉錄與摘要：錄音後由 ASR（中英混合準確率 91.2%）與大型語言模型整理成「行前簡報」與重點待辦，自動標出異常數值。
+• Context-Aware AI 健康諮詢：依寵物完整健康時間軸提供整理與建議參考。
+• Pawtient Watch（手足產品）：把閒置手機變成 AI 寵物攝影機，於裝置端被動偵測飲水、進食、如廁與咳嗽等行為，影像不離開裝置，形成難以事後捏造、可佐證的健康訊號；下一步將開發專用硬體裝置（寵物攝影機），以原生方式運行此技術。
+
+【產品／解決方案】將散落的醫療資料自動整理成一條「看得懂、可追溯、附來源標註」的健康時間軸，並輸出結構化數據——對飼主是省力的健康管理工具，對保險公司則是核保與理賠審核可依據的客觀證據層。（AI 內容僅供整理參考，不構成醫療診斷，亦不取代獸醫師判斷。）">Pawtient AI 是一套以 AI 驅動的寵物健康照護系統，專為需要長期追蹤的慢性病寵物（例如罹患慢性腎臟病的高齡貓）打造。
+
+【痛點】寵物的醫療資料高度分散——血檢報告、診療紀錄、用藥與症狀散落在不同診所與紙本之間。飼主難以整理，獸醫師回診時缺乏完整病史，保險公司核保／理賠時更得耗費大量人力逐筆比對、判斷既往症與發病時點。慢性病寵物的病程橫跨數年、數十份檢驗單，問題尤其嚴重。
+
+【核心技術】
+• 血檢報告 AI 辨識：拍一張檢驗單，自動抓取每項參數、數值、單位與參考區間，支援 64 種血檢項目，辨識準確率達 95.2%，並以色碼標示異常、多次並排對照。
+• 看診語音轉錄與摘要：錄音後由 ASR（中英混合準確率 91.2%）與大型語言模型整理成「行前簡報」與重點待辦，自動標出異常數值。
+• Context-Aware AI 健康諮詢：依寵物完整健康時間軸提供整理與建議參考。
+• Pawtient Watch（手足產品）：把閒置手機變成 AI 寵物攝影機，於裝置端被動偵測飲水、進食、如廁與咳嗽等行為，影像不離開裝置，形成難以事後捏造、可佐證的健康訊號；下一步將開發專用硬體裝置（寵物攝影機），以原生方式運行此技術。
+
+【產品／解決方案】將散落的醫療資料自動整理成一條「看得懂、可追溯、附來源標註」的健康時間軸，並輸出結構化數據——對飼主是省力的健康管理工具，對保險公司則是核保與理賠審核可依據的客觀證據層。（AI 內容僅供整理參考，不構成醫療診斷，亦不取代獸醫師判斷。）<button class="copy">複製</button></div>
+</div>
+
+<!-- Q9 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q9</span><div><div class="qlabel">公司官網<span class="en">If your website is up and running, let us know!</span></div><div class="tags"><span class="tag opt">選填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="https://generalrev.com（品牌官網）；App 可於 App Store／Google Play 搜尋「Pawtient AI」">​<span class="flag">請確認</span>https://generalrev.com（品牌官網）；App 可於 App Store／Google Play 搜尋「Pawtient AI」<button class="copy">複製</button></div>
+  <div class="hint">SBIR 計畫的品牌官網為 generalrev.com。若 Pawtient AI 另有產品官網（如 pawtient.ai），請改填您要對外公開的網址。</div>
+</div>
+
+<!-- Q10 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q10</span><div><div class="qlabel">公司所在國家<span class="en">In which country is your company located?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="台灣 (Taiwan)">台灣 (Taiwan)<button class="copy">複製</button></div>
+</div>
+
+<!-- Q11 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q11</span><div><div class="qlabel">公司所在城市<span class="en">In which city is your company located?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="新竹縣 (Hsinchu County)"><span class="flag">請確認</span>新竹縣 (Hsinchu County)<button class="copy">複製</button></div>
+  <div class="hint">依新竹縣地方型 SBIR 推估。請改為公司「登記地址」所在的縣市。</div>
+</div>
+
+<!-- Q12 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q12</span><div><div class="qlabel">公司全職人數<span class="en">How many full-time members are currently on your team?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="1">1<button class="copy">複製</button></div>
+  <div class="hint">全職人數為 <b>1</b>（創辦人）。另有專業委外協作夥伴（Android／後端／資安／美術／翻譯），相關說明已放在 Q13 團隊介紹。</div>
+</div>
+
+<!-- Q13 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q13</span><div><div class="qlabel">創辦人與核心團隊介紹、創業動機<span class="en">Introduce your co-founders, core team, and the motivation behind founding your startup.</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">長答</span></div></div></div>
+  <div class="ans" data-copy="【創辦人暨計畫主持人】林緯軒（Sean Lin）：軟體工程與產品背景，獨立完成 Pawtient AI 的 AI 核心、iOS／Android App 與後端架構，主導本產品從 0 到 1 的開發與上架。團隊以「1 名全職創辦人 ＋ 專業委外協作」的精實模式運作，委外夥伴涵蓋 Android 前端、後端開發、資安與雲端部署、美術行銷與多語系翻譯，使小團隊得以高效交付雙平台、9 語系的完整產品。
+
+【創業動機】兩年前，創辦人的愛貓確診慢性腎臟病。為了照護，必須長期追蹤血檢數值與病程，卻發現整理這些散落各處的醫療資料所耗費的心力遠超想像，市面上也沒有真正好用的工具。Pawtient AI 因此誕生——我們相信，把寵物的健康資料變成看得懂、可追溯的結構化數據，不只能減輕飼主負擔，更能成為獸醫照護與寵物保險之間，那一層長期缺席的客觀證據。">【創辦人暨計畫主持人】林緯軒（Sean Lin）：軟體工程與產品背景，獨立完成 Pawtient AI 的 AI 核心、iOS／Android App 與後端架構，主導本產品從 0 到 1 的開發與上架。團隊以「1 名全職創辦人 ＋ 專業委外協作」的精實模式運作，委外夥伴涵蓋 Android 前端、後端開發、資安與雲端部署、美術行銷與多語系翻譯，使小團隊得以高效交付雙平台、9 語系的完整產品。
+
+【創業動機】兩年前，創辦人的愛貓確診慢性腎臟病。為了照護，必須長期追蹤血檢數值與病程，卻發現整理這些散落各處的醫療資料所耗費的心力遠超想像，市面上也沒有真正好用的工具。Pawtient AI 因此誕生——我們相信，把寵物的健康資料變成看得懂、可追溯的結構化數據，不只能減輕飼主負擔，更能成為獸醫照護與寵物保險之間，那一層長期缺席的客觀證據。<button class="copy">複製</button></div>
+</div>
+
+<!-- Q14 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q14</span><div><div class="qlabel">產品／解決方案發展階段<span class="en">Which best describes your product status?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">單選</span></div></div></div>
+  <div class="ans choice">
+    <div class="opt-row"><span class="mark off">○</span> Nothing Built｜構思中</div>
+    <div class="opt-row"><span class="mark off">○</span> Mocks / Renderings｜測試/構圖</div>
+    <div class="opt-row"><span class="mark off">○</span> Prototype｜原型</div>
+    <div class="opt-row"><span class="mark off">○</span> Private Beta｜封閉測試</div>
+    <div class="opt-row"><span class="mark off">○</span> Public Beta｜公開測試中</div>
+    <div class="opt-row"><span class="mark off">○</span> Taking Preorders｜接受預購</div>
+    <div class="opt-row pick"><span class="mark on">◉</span> Launched｜產品上市　← 建議勾選</div>
+    <div class="opt-row"><span class="mark off">○</span> &gt; USD1M Revenue（過去 1 年營收 &gt; 100 萬美元）</div>
+  </div>
+  <div class="hint">iOS 2025/12、Android 2026/02 均已正式上架，故為「Launched」。</div>
+</div>
+
+<!-- Q15 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q15</span><div><div class="qlabel">產品及客戶屬性<span class="en">What is your sales model?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">複選</span></div></div></div>
+  <div class="ans choice">
+    <div class="opt-row pick"><span class="mark on">☑</span> to C（Consumer）— 訂閱制 App，直接面向飼主</div>
+    <div class="opt-row pick"><span class="mark on">☑</span> to B（Business）— 與保險公司合作（B2B2C，透過保單觸及保戶）</div>
+    <div class="opt-row"><span class="mark off">☐</span> to G（Government）</div>
+    <div class="opt-row"><span class="mark off">☐</span> Other</div>
+  </div>
+  <div class="hint">目前主力為 to C 訂閱；本次提案的核心是 to B 的保險合作，故兩者皆勾。</div>
+</div>
+
+<!-- Q16 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q16</span><div><div class="qlabel">主要營收模式<span class="en">Which best describes your revenue model?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">單選</span></div></div></div>
+  <div class="ans choice">
+    <div class="opt-row pick"><span class="mark on">◉</span> 產品導向｜Product-oriented　← 建議勾選（訂閱制 SaaS）</div>
+    <div class="opt-row"><span class="mark off">○</span> 專案導向｜Project-oriented</div>
+  </div>
+</div>
+
+<!-- Q17 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q17</span><div><div class="qlabel">產品銷售市場分布（已銷售國家）<span class="en">Countries where your product has been successfully sold.</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="以台灣為主要市場；App 已於 App Store 與 Google Play 全球上架，並有部分海外使用者。">以台灣為主要市場；App 已於 App Store 與 Google Play 全球上架，並有部分海外使用者。<button class="copy">複製</button></div>
+</div>
+
+<!-- Q18 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q18</span><div><div class="qlabel">產品銷售目標市場（未來 2 年）<span class="en">Target markets in the next 2 years.</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="台灣（深耕，並與寵物保險夥伴合作擴大）、日本、北美等寵物醫療成熟市場。">台灣（深耕，並與寵物保險夥伴合作擴大）、日本、北美等寵物醫療成熟市場。<button class="copy">複製</button></div>
+</div>
+
+<!-- Q19 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q19</span><div><div class="qlabel">目前最亮眼的成就<span class="en">Your most significant achievements so far.</span></div><div class="tags"><span class="tag opt">選填</span><span class="tag type">長答</span></div></div></div>
+  <div class="ans" data-copy="• 產品已正式上架雙平台：iOS（2025/12 App Store）與 Android（2026/02 Google Play），目前約 1,000 名實際使用者。
+• 產品完整度：支援 64 種血檢參數庫、21 種健康紀錄型態、9 種介面語言。
+• AI 技術指標：血檢辨識準確率 95.2%、看診語音轉錄 91.2%、AI 諮詢滿意度 82.6%。
+• 獲新竹縣政府 114 年度「地方型 SBIR」研發補助（合約 G114HS15，補助款 NT$950,000）。
+• 已完成可實機展示的寵物保險合作方案：保戶端「投保→申請理賠→進度」完整流程，以及理賠人員端的審核主控台。">• 產品已正式上架雙平台：iOS（2025/12 App Store）與 Android（2026/02 Google Play），目前約 1,000 名實際使用者。
+• 產品完整度：支援 64 種血檢參數庫、21 種健康紀錄型態、9 種介面語言。
+• AI 技術指標：血檢辨識準確率 95.2%、看診語音轉錄 91.2%、AI 諮詢滿意度 82.6%。
+• 獲新竹縣政府 114 年度「地方型 SBIR」研發補助（合約 G114HS15，補助款 NT$950,000）。
+• 已完成可實機展示的寵物保險合作方案：保戶端「投保→申請理賠→進度」完整流程，以及理賠人員端的審核主控台。<button class="copy">複製</button></div>
+</div>
+
+<!-- Q20 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q20</span><div><div class="qlabel">實際客戶案例（導入過程與成效）<span class="en">Share a notable customer success story. 回填者優先推薦給和泰評估。</span></div><div class="tags"><span class="tag opt">選填（建議填）</span><span class="tag type">長答</span></div></div></div>
+  <div class="ans" data-copy="【代表性使用情境：以慢性腎臟病貓咪為例】
+
+一隻邁入高齡的貓確診慢性腎臟病後，飼主以 Pawtient AI 持續記錄：每次血檢拍照即自動結構化，SDMA、CREA、BUN 等指標跨次自動成趨勢圖；用藥、飲水、體重與症狀逐日累積，並由 Pawtient Watch 在裝置端被動記錄飲水量變化。當病情變化、需要申請寵物險理賠時，App 能一鍵彙整出一條附來源標註（獸醫原始／飼主輸入／裝置偵測）的健康時間軸：
+
+• 投保時：系統產生「投保前健康證明」——以連續數百天的紀錄客觀佐證投保當下的健康狀態，且無法事後回填。
+• 理賠時：發病時點與保單等待期可清楚對照，AI 標示需注意的風險點，由理賠人員做最終核定。
+
+對飼主，這是省下大量整理心力、把照護做得更踏實的工具；對保險公司，這是讓審核更快、判斷更有依據、爭議可望降低的結構化證據層。（上述效益為待驗證之合作假設，亦為我們希望與和泰產險透過小型試點共同驗證的目標。）">【代表性使用情境：以慢性腎臟病貓咪為例】
+
+一隻邁入高齡的貓確診慢性腎臟病後，飼主以 Pawtient AI 持續記錄：每次血檢拍照即自動結構化，SDMA、CREA、BUN 等指標跨次自動成趨勢圖；用藥、飲水、體重與症狀逐日累積，並由 Pawtient Watch 在裝置端被動記錄飲水量變化。當病情變化、需要申請寵物險理賠時，App 能一鍵彙整出一條附來源標註（獸醫原始／飼主輸入／裝置偵測）的健康時間軸：
+
+• 投保時：系統產生「投保前健康證明」——以連續數百天的紀錄客觀佐證投保當下的健康狀態，且無法事後回填。
+• 理賠時：發病時點與保單等待期可清楚對照，AI 標示需注意的風險點，由理賠人員做最終核定。
+
+對飼主，這是省下大量整理心力、把照護做得更踏實的工具；對保險公司，這是讓審核更快、判斷更有依據、爭議可望降低的結構化證據層。（上述效益為待驗證之合作假設，亦為我們希望與和泰產險透過小型試點共同驗證的目標。）<button class="copy">複製</button></div>
+  <div class="hint">此為「代表性使用情境」寫法，誠實不誇大（未宣稱已簽約保戶）。若您已有真實具名的使用者好評或診所合作，補進去會更有力。</div>
+</div>
+
+<!-- Q21 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q21</span><div><div class="qlabel">技術／產品展示影片<span class="en">Demo video of your solution.</span></div><div class="tags"><span class="tag opt">選填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans choice"><span class="flag">選填</span>如有展示影片，請貼上連結（YouTube／雲端）。目前對外示範以 App 實機操作＋密碼保護的合作 Brief 進行；若需要，我可協助製作一支 1–2 分鐘的功能展示短片。</div>
+</div>
+
+<!-- Q22 themes -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q22</span><div><div class="qlabel">提案主題（共三題，每題各選一項）<span class="en">Which categories best align with your proposal? — three required single-selects, one per theme.</span></div><div class="tags"><span class="tag req">必填 ×3</span><span class="tag type">單選</span></div></div></div>
+  <div class="ans choice">
+    <div style="font-weight:700;margin:2px 0 6px">主題 1：AI 營運賦能</div>
+    <div class="opt-row"><span class="mark off">○</span> 網站瀏覽監測與競品分析 AI 助手</div>
+    <div class="opt-row"><span class="mark off">○</span> 身障者友善數位服務</div>
+    <div class="opt-row"><span class="mark off">○</span> 手寫商用車車體規格單 AI 識別</div>
+    <div class="opt-row"><span class="mark off">○</span> 車輛外觀損傷評估輔助 AI</div>
+    <div class="opt-row pick"><span class="mark on">◉</span> 無　← 勾「無」</div>
+    <div style="font-weight:700;margin:14px 0 6px">主題 2：AI 智慧決策</div>
+    <div class="opt-row"><span class="mark off">○</span> 零件智慧倉儲數位孿生模型</div>
+    <div class="opt-row pick"><span class="mark on">◉</span> 無　← 勾「無」</div>
+    <div style="font-weight:700;margin:14px 0 6px">主題 3：創新商模拓展</div>
+    <div class="opt-row"><span class="mark off">○</span> 商用車即時影像 AI 創新應用</div>
+    <div class="opt-row pick"><span class="mark on">◉</span> 創新產險銷售方案｜Innovative Insurance Sales Solutions　← 這就是我們</div>
+    <div class="opt-row"><span class="mark off">○</span> 無</div>
+  </div>
+  <div class="hint">和泰產險有銷售寵物保險，我們的方案正對應「創新產險銷售方案」：把健康照護做成寵物險的加值與差異化銷售，並提供理賠審核的客觀證據層。</div>
+</div>
+
+<!-- Q23 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q23</span><div><div class="qlabel">提案簡報下載連結<span class="en">Pitch Deck URL（依 8 段式架構）</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答（網址）</span></div></div></div>
+  <div class="ans choice"><span class="flag">必填—請提供連結</span>需一個可下載／檢視的簡報連結（建議 Google Drive 設為「知道連結的人可檢視」）。下方為依表單 8 段式架構、針對和泰量身的建議內容，您可直接做成簡報。</div>
+  <details class="deck"><summary>▸ 展開：8 段式簡報建議內容（和泰專屬）</summary>
+  <ol>
+    <li><b>解決方案與技術優勢：</b>AI 自動把寵物血檢／診療資料結構化成可追溯的健康時間軸；血檢辨識 95.2%、語音轉錄 91.2%；Pawtient Watch 於裝置端被動偵測行為，形成難以事後捏造的健康訊號。</li>
+    <li><b>應用情境與對客戶的價值：</b>飼主＝省力的健康管理；保險端＝核保／理賠取得客觀證據層，審核更快、爭議可望降低；保戶端＝有感加值服務、提升續保黏著。</li>
+    <li><b>如何對應主題（創新產險銷售方案）：</b>把「照護陪伴」做進和泰寵物險，成為差異化銷售與加值服務；同時減輕慢性病理賠最耗人力的「既往症 × 等待期」判斷負擔。</li>
+    <li><b>≥1.5 個月可執行規劃：</b>第 0–2 週共同設計試點範圍與保戶名單；第 3–8 週一批保戶免費使用、累積結構化紀錄；第 9–12 週由和泰觀察審核效率／爭議率變化並複盤。完全可逆、不簽長約、不涉系統整合（資料不落地）。</li>
+    <li><b>合作所需關鍵資源：</b>和泰寵物險的試點保戶名單與理賠流程窗口、共同設計的投保與衛教旅程、品牌共同露出。</li>
+    <li><b>主題相關實績：</b>已完成可實機展示的保戶端投保→理賠→進度流程＋理賠審核主控台；雙平台上架、約 1,000 使用者。</li>
+    <li><b>核心團隊：</b>創辦人 林緯軒（全端＋AI）＋ 專業委外（Android／後端／資安／美術／翻譯）。</li>
+    <li><b>重要成就：</b>iOS／Android 上架、9 語系、新竹縣地方型 SBIR 補助、Claude／ChatGPT 官方 AI 連接器整合。</li>
+  </ol>
+  </details>
+  <div class="hint">提醒：對保險公司溝通只談流程效益（審核工時、補件往返、風險分級），<b>不談賠付率／損失率</b>；AI 僅輔助標示風險、由理賠人員最終核定——這條紅線請在簡報中保留。</div>
+</div>
+
+<!-- Q24 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q24</span><div><div class="qlabel">是否已募過資<span class="en">Have you raised funds before?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">單選</span></div></div></div>
+  <div class="ans choice">
+    <div class="opt-row"><span class="mark off">○</span> Yes</div>
+    <div class="opt-row pick"><span class="mark on">◉</span> No　← 建議（尚未進行股權募資；目前為自籌＋政府 SBIR 補助）</div>
+  </div>
+  <div class="hint"><span class="flag">請確認</span>若您已有天使／親友等股權投資，請改選 Yes，並調整 Q25–27。</div>
+</div>
+
+<!-- Q25 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q25</span><div><div class="qlabel">目前募資階段<span class="en">Current fundraising stage?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">單選</span></div></div></div>
+  <div class="ans choice">
+    <div class="opt-row pick"><span class="mark on">◉</span> 種子輪｜Seed Round　← 建議</div>
+    <div class="opt-row"><span class="mark off">○</span> 天使輪｜Angel Round</div>
+    <div class="opt-row"><span class="mark off">○</span> pre-A 輪</div>
+    <div class="opt-row"><span class="mark off">○</span> A+ 輪</div>
+    <div class="opt-row"><span class="mark off">○</span> B 輪以後</div>
+  </div>
+</div>
+
+<!-- Q26 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q26</span><div><div class="qlabel">內部增資累積金額（美金）<span class="en">Capital raised internally (USD)</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="約 US$31,000（SBIR 計畫自籌款 NT$1,000,000，依匯率約當）"><span class="flag">請確認</span>約 US$31,000（SBIR 計畫自籌款 NT$1,000,000，依匯率約當）<button class="copy">複製</button></div>
+  <div class="hint">「內部增資」＝創辦人／股東自有資金投入。此處以 SBIR 自籌款金額估算，請改為您實際投入金額。</div>
+</div>
+
+<!-- Q27 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q27</span><div><div class="qlabel">對外募資累積金額（美金）<span class="en">Capital raised externally (USD)</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans" data-copy="股權對外募資：US$0。另獲新竹縣政府地方型 SBIR 補助款 NT$950,000（約 US$29,000，屬政府補助、非股權投資）。"><span class="flag">請確認</span>股權對外募資：US$0。另獲新竹縣政府地方型 SBIR 補助款 NT$950,000（約 US$29,000，屬政府補助、非股權投資）。<button class="copy">複製</button></div>
+</div>
+
+<!-- Q28 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q28</span><div><div class="qlabel">未來一年募資／增資計劃（美金）<span class="en">Capital to raise within next 12 months (USD)</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans choice"><span class="flag">請填寫</span>請填入您規劃的目標金額（美金）。若尚無明確金額，可填「規劃中／視保險合作試點結果而定」。</div>
+</div>
+
+<!-- Q29 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q29</span><div><div class="qlabel">下一輪募資用途<span class="en">How will you use the funds?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">長答</span></div></div></div>
+  <div class="ans" data-copy="資金將用於：(1) 與保險夥伴（如和泰產險）的寵物險試點落地與規模化；(2) Pawtient Watch 行為偵測產品的完整商品化與整合；(3) 擴充全職團隊（AI／後端／客戶成功）；(4) 台灣市場行銷與獲客，並啟動日本、北美市場驗證；(5) AI 模型與雲端基礎設施。">資金將用於：(1) 與保險夥伴（如和泰產險）的寵物險試點落地與規模化；(2) Pawtient Watch 行為偵測產品的完整商品化與整合；(3) 擴充全職團隊（AI／後端／客戶成功）；(4) 台灣市場行銷與獲客，並啟動日本、北美市場驗證；(5) AI 模型與雲端基礎設施。<button class="copy">複製</button></div>
+</div>
+
+<!-- Q30 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q30</span><div><div class="qlabel">是否參加過加速器／育成／競賽<span class="en">Have you joined any incubation/acceleration programs before?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">長答</span></div></div></div>
+  <div class="ans" data-copy="是。獲選新竹縣政府 114 年度「地方產業創新研發推動計畫（地方型 SBIR）」，計畫名稱「Pawtient AI 毛孩智能照護系統」（合約編號 G114HS15），執行期間 2025/09–2026/06。">是。獲選新竹縣政府 114 年度「地方產業創新研發推動計畫（地方型 SBIR）」，計畫名稱「Pawtient AI 毛孩智能照護系統」（合約編號 G114HS15），執行期間 2025/09–2026/06。<button class="copy">複製</button></div>
+  <div class="hint"><span class="flag">請補充</span>若另有參加過 InnoVEX、其他育成或競賽，請一併補上。</div>
+</div>
+
+<!-- Q31 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q31</span><div><div class="qlabel">如何得知計劃<span class="en">How did you hear about this program?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">單選</span></div></div></div>
+  <div class="ans choice"><span class="flag">請選擇</span>請依實際情況勾選其一：Facebook／Google／EDM／新聞媒體／StarFab 加速器官方網站／其他育成單位／企業／投資人／政府單位／StarFab 校友／InnoVEX 2026 展會／其他。</div>
+</div>
+
+<!-- Q32 -->
+<div class="card ok">
+  <div class="qhead"><span class="qno">Q32</span><div><div class="qlabel">經由哪一單位推薦<span class="en">Who referred you to us?</span></div><div class="tags"><span class="tag opt">選填</span><span class="tag type">短答</span></div></div></div>
+  <div class="ans choice">如有推薦單位／人，請填寫；若無可留空。</div>
+</div>
+
+<!-- Q33 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q33</span><div><div class="qlabel">是否看過以下加速器廣告（可複選）<span class="en">Have you seen these accelerator ads?</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">複選</span></div></div></div>
+  <div class="ans choice"><span class="flag">請選擇</span>請依實際情況勾選：FACEBOOK 廣告／網頁廣告／影音廣告／沒有看過廣告／其他。（若沒印象，勾「沒有看過廣告」即可。）</div>
+</div>
+
+<!-- Q34 -->
+<div class="card todo">
+  <div class="qhead"><span class="qno">Q34</span><div><div class="qlabel">注意事項 — 同意條款<span class="en">I have read, understand and agree to the terms.</span></div><div class="tags"><span class="tag req">必填</span><span class="tag type">勾選</span></div></div></div>
+  <div class="ans choice"><span class="flag">送出前自行勾選</span>條款內容：同意將報名資料提供予主辦單位（和泰集團、和泰汽車、豪覓顧問）蒐集、儲存、分析與運用；並保證所填資料屬實、不侵害他人智慧財產權。屬法律同意，請您本人確認後勾選「我已閱讀並同意以上條款」。</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="guard">本頁為內部草稿審閱用途，僅供 Pawtient AI 團隊在送出 Google 表單前檢視，未對外公開（noindex）。所有保險相關效益均為待驗證之合作假設；Pawtient AI 為健康紀錄與整理工具，AI 內容僅供參考，不構成醫療診斷。</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var box = btn.closest('.ans');
+    var txt = box.getAttribute('data-copy') || box.innerText.replace('複製','');
+    navigator.clipboard.writeText(txt).then(function(){
+      btn.textContent='已複製 ✓'; btn.classList.add('done');
+      setTimeout(function(){btn.textContent='複製'; btn.classList.remove('done');},1600);
+    });
+  });
+});
+</script>
+</body>
+</html>
