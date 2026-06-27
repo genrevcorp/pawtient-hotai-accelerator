@@ -88,12 +88,20 @@ Q3 Email（換成保險提案用信箱）、Q4 電話、Q7 設立日期、Q9 官
 
 ---
 
-## 需要更深背景時可 clone（唯讀、免 build）
+## 更完整的背景（建議的「姊妹資料夾」並列結構）
 
-- `genrevcorp/pawtient-insurance-pitch-site` — 簡報素材庫（最常用）
-- `genrevcorp/PawtientAI` — App 主 repo（`docs/insurance-demo/`、`docs/marketing/` 有完整合作示範與行銷素材）
-- `genrevcorp/PawtientWatch` — Pawtient Watch 產品細節
-- 註：SBIR 原始文件只在 Sean 本機、不在 GitHub；填表要用的事實已整理在 `HANDOFF.md`。
+為了讓你（Claude Code）能像原始 session 一樣**跨 repo 讀資料**，建議把相關 repo clone 成並列的姊妹資料夾（皆為**唯讀**、**不需 `npm install`、不需 build**，只是給你讀）：
+
+```
+~/pawtient/
+├── pawtient-hotai-accelerator/        ← 在這裡開 claude（本 repo，工作主場）
+├── pawtient-insurance-pitch-site/     ← 簡報素材庫（App 實機截圖、定位文案、市場數據）
+├── PawtientAI/                        ← App 主 repo：docs/insurance-demo/、docs/marketing/
+└── PawtientWatch/                     ← Pawtient Watch 產品細節
+```
+
+若這些已 clone 在隔壁，直接讀 `../PawtientAI/…`、`../PawtientWatch/…`、`../pawtient-insurance-pitch-site/…` 即可，**不用重複 clone**。
+註：SBIR 原始文件只在 Sean 本機、不在 GitHub；填表要用的事實已整理在 `HANDOFF.md` §6。
 
 ---
 

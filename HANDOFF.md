@@ -88,12 +88,17 @@
    ```
    若沒有，執行 `gh auth login`（選 GitHub.com、HTTPS），用 Sean 給你的權限登入。
 
-2. Clone 工作 repo：
+2. 建立一個共用母資料夾，把相關 repo clone 成**並列的姊妹資料夾**（後三個是唯讀背景，**不需 build**）：
    ```bash
-   gh repo clone genrevcorp/pawtient-hotai-accelerator
+   mkdir ~/pawtient && cd ~/pawtient
+   gh repo clone genrevcorp/pawtient-hotai-accelerator      # 工作主場
+   gh repo clone genrevcorp/pawtient-insurance-pitch-site   # 簡報素材庫
+   gh repo clone genrevcorp/PawtientAI                       # App 主 repo（大、私有；唯讀）
+   gh repo clone genrevcorp/PawtientWatch                    # Pawtient Watch 細節
    cd pawtient-hotai-accelerator
    ```
-   （或 `git clone https://github.com/genrevcorp/pawtient-hotai-accelerator.git`）
+   這樣 Claude Code 在工作主場就能讀 `../PawtientAI/…`、`../PawtientWatch/…`、`../pawtient-insurance-pitch-site/…`，取得和原始 session 一樣的跨 repo 背景。
+   （只想最快完成報名表的話，clone 第一個就夠；做簡報至少再加 `pawtient-insurance-pitch-site`。）
 
 3. 在這個資料夾打開 Claude Code，並請它先讀本文件：
    ```bash
