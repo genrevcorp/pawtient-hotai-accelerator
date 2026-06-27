@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Pawtient AI — 健康時間軸 · 滾輪 Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FEF9F1; --ink:#2B2126; --soft:#6E5C66; --rose:#D47FA6;
+  --rose-deep:#A8517D; --rose-ink:#8C3E66; --plum:#2A1622; --cream:#F6E9F0;
+  --serif:"Fraunces","Noto Serif TC",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--plum);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* intro / outro pads */
+.pad{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 8vw;position:relative}
+.pad.intro{background:var(--plum);color:#fff}
+.pad.outro{background:var(--plum);color:#fff}
+.pad .eyebrow{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--rose);margin-bottom:22px}
+.pad h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,76px);line-height:1.06;letter-spacing:-.01em}
+.pad h1 em{font-style:italic;color:var(--rose)}
+.pad p{margin-top:20px;font-size:clamp(15px,1.6vw,19px);color:#D8BECB;max-width:42ch;line-height:1.6}
+.scrollhint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#AE8C9D;display:flex;flex-direction:column;align-items:center;gap:10px}
+.scrollhint .arr{width:22px;height:22px;border-right:2px solid var(--rose);border-bottom:2px solid var(--rose);transform:rotate(45deg);animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.5}50%{transform:rotate(45deg) translate(4px,4px);opacity:1}}
+
+/* showcase: tall scroller with a pinned stage */
+.showcase{position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;
+  gap:clamp(20px,5vw,80px);padding:0 clamp(28px,8vw,140px);
+  transition:background-color .7s ease, color .7s ease}
+
+/* left: timeline + caption */
+.panel{position:relative;z-index:3}
+.rail{display:flex;gap:20px}
+.rail .line{position:relative;width:2px;background:currentColor;opacity:.18;border-radius:2px;flex:0 0 auto;margin-top:6px}
+.rail .fill{position:absolute;left:0;top:0;width:100%;background:var(--rose);border-radius:2px;transition:height .25s ease}
+.nodes{display:flex;flex-direction:column;justify-content:space-between;flex:0 0 auto}
+.node{display:flex;align-items:center;gap:12px;height:30px;opacity:.4;transition:opacity .4s ease}
+.node.on{opacity:1}
+.node .dot{width:11px;height:11px;border-radius:50%;background:currentColor;flex:0 0 auto;transition:.3s}
+.node.on .dot{background:var(--rose);box-shadow:0 0 0 5px rgba(212,127,166,.22)}
+.node .tt{font-size:13px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+
+.caps{position:relative;margin-top:38px;min-height:200px}
+.cap{position:absolute;inset:0;opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease;pointer-events:none}
+.cap.on{opacity:1;transform:none}
+.cap .time{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--rose-deep);font-weight:600}
+.cap .stage-tag{display:inline-block;margin-left:10px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  background:rgba(168,81,125,.12);border:1px solid rgba(168,81,125,.3);border-radius:99px;padding:3px 11px;color:var(--rose-deep)}
+.cap h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,3.6vw,46px);line-height:1.1;margin:16px 0 14px;letter-spacing:-.01em}
+.cap p{font-size:clamp(15px,1.4vw,18px);line-height:1.65;max-width:34ch;opacity:.85}
+.cap .metric{margin-top:18px;display:inline-flex;align-items:baseline;gap:8px}
+.cap .metric b{font-family:var(--serif);font-weight:600;font-size:30px;color:var(--rose-deep)}
+.cap .metric span{font-size:13px;opacity:.7}
+
+/* right: phone */
+.phonewrap{position:relative;z-index:3;display:flex;justify-content:center;align-items:center}
+.phone{position:relative;width:clamp(220px,26vw,330px);aspect-ratio:1080/2424;
+  border-radius:34px;padding:10px;background:#160C11;box-shadow:0 50px 110px -40px rgba(20,8,16,.7);}
+.phone::after{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:34%;height:6px;border-radius:99px;background:rgba(255,255,255,.16)}
+.screens{position:absolute;inset:10px;border-radius:26px;overflow:hidden;background:#0E0A0C}
+.screens img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .15s linear;will-change:opacity}
+
+/* dark beats flip text colour */
+.stage.dark .node .tt,.stage.dark .cap h2{color:#fff}
+.stage.dark .cap p{color:#E6D6DF}
+.stage.dark .cap .time,.stage.dark .cap .stage-tag{color:var(--rose)}
+.stage.dark .cap .metric b{color:var(--rose)}
+
+/* progress bar top */
+.prog{position:fixed;top:0;left:0;height:3px;background:var(--rose);width:0;z-index:50;transition:width .1s linear}
+.brandmark{position:fixed;top:18px;left:22px;z-index:40;font-family:var(--serif);font-weight:600;font-size:15px;color:var(--rose);mix-blend-mode:difference}
+
+@media(max-width:760px){
+  .stage{grid-template-columns:1fr;gap:18px;padding:80px 28px 28px}
+  .phonewrap{order:-1}.phone{width:170px}
+  .cap p{max-width:none}.caps{min-height:150px}
+}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+<div class="brandmark">Pawtient AI</div>
+
+<!-- INTRO -->
+<section class="pad intro">
+  <div class="eyebrow">滾輪 = 時間軸 · scroll to play</div>
+  <h1>同一隻貓，<br>一條<em>看得懂</em>的<br>健康時間軸</h1>
+  <p>從投保那天的健康基準，到出險時的理賠核定——往下捲，時間就往前走；往回捲，整段倒帶重播。</p>
+  <div class="scrollhint"><span>往下捲動</span><span class="arr"></span></div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="showcase" id="showcase">
+  <div class="stage" id="stage">
+    <div class="panel">
+      <div class="rail">
+        <div class="line" style="height:228px"><div class="fill" id="fill"></div></div>
+        <div class="nodes" id="nodes"></div>
+      </div>
+      <div class="caps" id="caps"></div>
+    </div>
+    <div class="phonewrap">
+      <div class="phone"><div class="screens" id="screens"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTRO -->
+<section class="pad outro">
+  <div class="eyebrow">同一份紀錄 · 兩端共用</div>
+  <h1>保戶送出的這條線，<br>就是理賠人員<br><em>打開來判斷</em>的同一份。</h1>
+  <p>把保險從「事後理賠」，變成「事前健康資料系統」。AI 只標示風險，最終由理賠人員人工核定。</p>
+</section>
+
+<script>
+(function(){
+  // ---- beats: 保險證據鏈時間軸 ----
+  var BEATS=[
+    {img:'../assets/demo_owner_enroll.png', time:'Day 0', tag:'投保',
+     title:'建立「投保前健康基準」', text:'投保當下就留下可溯源的健康基準：腎指標正常、無既往病史、已連續記錄。日後判斷既往症的有力佐證。',
+     metric:['426 天','連續健康紀錄'], bg:'#FEF9F1', ink:'#2B2126', dark:false},
+    {img:'../assets/02_blood_test_trends.png', time:'病程 · 月',  tag:'血檢',
+     title:'每次血檢，自動成一條趨勢', text:'同一參數跨次檢驗自動繪成折線，附正常區間帶；數值偏離一眼看出方向。',
+     metric:['64 項','血檢參數自動辨識'], bg:'#FBF3EC', ink:'#2B2126', dark:false},
+    {img:'../assets/03_vet_visit_ai_briefing.png', time:'回診', tag:'看診',
+     title:'回診之前，重點已備妥', text:'看診模式錄音、拍處方；AI 整理成「行前簡報」，異常自動標出（如 CREA 超出參考區間）。',
+     metric:['91.2%','語音轉錄準確率'], bg:'#F7ECEF', ink:'#2B2126', dark:false},
+    {img:'../assets/demo_watch_events.png', time:'每天', tag:'Watch',
+     title:'裝置被動偵測，難以事後造假', text:'Pawtient Watch 在裝置端偵測飲水、進食、咳嗽；非人工輸入、長期連續，每筆都帶可溯源訊號鏈。',
+     metric:['24/7','被動連續紀錄'], bg:'#F1E4EC', ink:'#2B2126', dark:false},
+    {img:'../assets/demo_owner_claim.png', time:'出險', tag:'申請理賠',
+     title:'一鍵組成「理賠資料包」', text:'選定就醫事件，App 自動把血檢、行為、症狀、費用依時間排序，每一筆都標來源：獸醫原始、裝置偵測、飼主填寫。',
+     metric:['1 鍵','自動組資料包'], bg:'#6B3A56', ink:'#FFFFFF', dark:true},
+    {img:'../assets/demo_owner_status.png', time:'核定', tag:'AI 預審 · 人工核定',
+     title:'AI 標風險，人決定', text:'發病時點落在等待期、非既往症，一目了然。AI 風險預審（低）→ 理賠人員核定（核准）→ 給付。',
+     metric:['NT$18,000','示範案例給付'], bg:'#2A1622', ink:'#FFFFFF', dark:true},
+  ];
+  var N=BEATS.length;
+  var screens=document.getElementById('screens');
+  var nodesEl=document.getElementById('nodes');
+  var capsEl=document.getElementById('caps');
+  var stage=document.getElementById('stage');
+  var fill=document.getElementById('fill');
+  var prog=document.getElementById('prog');
+  var showcase=document.getElementById('showcase');
+
+  // build DOM
+  var imgs=[], caps=[], nodes=[];
+  BEATS.forEach(function(b,i){
+    var im=document.createElement('img'); im.src=b.img; im.alt=b.tag; im.loading='eager';
+    screens.appendChild(im); imgs.push(im);
+
+    var nd=document.createElement('div'); nd.className='node';
+    nd.innerHTML='<span class="dot"></span><span class="tt">'+b.time+' · '+b.tag+'</span>';
+    nodesEl.appendChild(nd); nodes.push(nd);
+
+    var cp=document.createElement('div'); cp.className='cap';
+    cp.innerHTML='<span class="time">'+b.time+'</span><span class="stage-tag">'+b.tag+'</span>'+
+      '<h2>'+b.title+'</h2><p>'+b.text+'</p>'+
+      '<div class="metric"><b>'+b.metric[0]+'</b><span>'+b.metric[1]+'</span></div>';
+    capsEl.appendChild(cp); caps.push(cp);
+  });
+
+  // set showcase height so each beat gets ~one viewport of scroll
+  showcase.style.height=((N+1)*100)+'vh';
+
+  var centers=[]; for(var i=0;i<N;i++) centers.push(N>1?i/(N-1):0);
+
+  function hexToRgb(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function mix(c1,c2,t){var a=hexToRgb(c1),b=hexToRgb(c2);return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+
+  function render(p){
+    // p in 0..1 across the showcase
+    prog.style.width=(p*100)+'%';
+    // triangular opacity per beat
+    var active=0, best=1e9;
+    for(var i=0;i<N;i++){
+      var d=Math.abs(p-centers[i]);
+      var o=Math.max(0,1-d*(N-1));
+      imgs[i].style.opacity=o;
+      if(d<best){best=d;active=i;}
+    }
+    // timeline fill + active node/caption
+    fill.style.height=(p*100)+'%';
+    for(var j=0;j<N;j++){nodes[j].classList.toggle('on',j===active);caps[j].classList.toggle('on',j===active);}
+    // background: interpolate between the two surrounding beat colours
+    var seg=p*(N-1); var lo=Math.max(0,Math.min(N-2,Math.floor(seg))); var t=seg-lo;
+    stage.style.backgroundColor=mix(BEATS[lo].bg,BEATS[lo+1].bg,t);
+    stage.style.color=BEATS[active].ink;
+    stage.classList.toggle('dark',BEATS[active].dark);
+  }
+
+  function onScroll(){
+    var r=showcase.getBoundingClientRect();
+    var total=showcase.offsetHeight-window.innerHeight;
+    var p=Math.min(1,Math.max(0,(-r.top)/total));
+    render(p);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  // preload then first paint
+  onScroll();
+})();
+</script>
+</body>
+</html>
